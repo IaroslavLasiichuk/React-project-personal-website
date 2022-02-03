@@ -2,30 +2,11 @@ import React from 'react';
 import '../Contact/contact.css';
 import '/Users/yaroslavlasiiychuk/Desktop/react_project/my-app/src/style/module.css';
 import '/Users/yaroslavlasiiychuk/Desktop/react_project/my-app/src/index.css';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
-const schema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName:yup.string().required(),
-    email:yup.string(),
-    text:yup.string().required(),
-    massegearea: yup.string().required()
-    
-})
-console.log(schema);
+
+
 
 const Contact = () => {
-
-    const {register, handleSubmit, errors} = useForm({
-        resolver: yupResolver(schema),
-    });
-
-    const submitForm = (data)=>{
-        document.querySelector('.btn').addEventListener('click');
-console.log(data);
-    }
 
     return (
     
@@ -35,7 +16,7 @@ console.log(data);
        <h3> Would you like to contact me please fill out the info below and I will be in touch.</h3>
     </div>
      
-     <form onSubmit={handleSubmit(submitForm)} className='contact'>
+     <form className='contact'>
         
         <label htmlFor="">First Name <span className='form-symbol'>*</span> </label>
 
@@ -59,7 +40,7 @@ console.log(data);
         <input className='message-area' name='message' type="text" />
       
 
-        <input onSubmit={handleSubmit(submitForm)} className='btn' type="submit"/>    
+        <input className='btn' type="submit"/>    
         
     </form>
   
