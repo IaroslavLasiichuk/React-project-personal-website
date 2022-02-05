@@ -6,7 +6,6 @@ import Blog from './components/Blog/Blog';
 import {Contact} from './components/Contact/Contact';
 import {About} from './components/About/About';
 import './index.css';
-import './style/module.css';
 
 const App = () => (
     <BrowserRouter>

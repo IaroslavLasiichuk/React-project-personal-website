@@ -39,7 +39,6 @@ export const Contact = () => (
         
         <input className='message-area' name='message' type="text"/>
         
-        
         <input className='btn' type="submit"/>
       
       </form>
