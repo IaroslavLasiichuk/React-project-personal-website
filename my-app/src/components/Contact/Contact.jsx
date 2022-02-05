@@ -1,9 +1,33 @@
 import React from 'react';
 import '../Contact/contact.css';
 import {Footer} from '../Footer/Footer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+ 
+ 
+function validateForm(e){
+  e.preventDefault();
+  const inputs = document.querySelectorAll('.input');
+  inputs.forEach(element=>{
+    if(element.value === ''){
+      element.style = 'border: 1px solid red';
+      toast(`placeholder please enter ${element.name}`);
+      return false;
+    }
+    else if(element.type === 'email' && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(element.value)){
+     toast(`placeholder please enter valid email address`);
+     return false;
+      
+    }
+    else {
+      element.style = '';
+    }
+  })
+}
 
 export const Contact = () => (
-    
+  
+  
     <div className='main-contact'>
       <div className='contact-page'>
         <h2 className='secondary-text'>Contact Me</h2>
@@ -16,33 +40,33 @@ export const Contact = () => (
         <label htmlFor="">First Name <span className='form-symbol'>*</span>
         </label>
         
-        <input type="text" name='firstName' placeholder='First Name'/>
+        <input className='input' type="text" name='firstName' placeholder='First Name'/>
         
         <label htmlFor="">Last Name <span className='form-symbol'>*</span>
         </label>
         
-        <input type="text" name='lasttName' placeholder='Last Name'/>
+        <input className='input' type="text" name='lastName' placeholder='Last Name'/>
         
         <label htmlFor="">Email Address <span className='form-symbol'>*</span>
         </label>
         
-        <input type="text" name='email' placeholder='Email Address'/>
+        <input className='input' type="email" name='email' placeholder='Email Address'/>
         
         <label htmlFor="">Subject <span className='form-symbol'>*</span>
         </label>
         
-        <input type="text" name='text' placeholder='Subject'/>
+        <input className='input' type="text" name='text' placeholder='Subject'/>
         
         
         <label htmlFor="">Message <span className='form-symbol'>*</span>
         </label>
         
-        <input className='message-area' name='message' type="text"/>
+        <textarea className='message-area input' name='message' placeholder='Message' />
         
-        <input className='btn' type="submit"/>
+        <input onClick={validateForm} className='btn' type="submit"/>
       
       </form>
-      
+      <ToastContainer />
       <Footer/>
     </div>
 );
