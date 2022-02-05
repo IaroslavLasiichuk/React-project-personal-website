@@ -3,8 +3,8 @@ import '../Contact/contact.css';
 import {Footer} from '../Footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
- 
- 
+
+
 function validateForm(e){
   e.preventDefault();
   const inputs = document.querySelectorAll('.input');
@@ -17,10 +17,11 @@ function validateForm(e){
     else if(element.type === 'email' && !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(element.value)){
      toast(`placeholder please enter valid email address`);
      return false;
-      
+     
     }
     else {
       element.style = '';
+      document.querySelector('form').submit()
     }
   })
 }
@@ -35,7 +36,7 @@ export const Contact = () => (
           will be in touch.</h3>
       </div>
       
-      <form className='contact'>
+      <form action='https://mikas.dev/prj/send/send.php' method='post' className='contact'>
         
         <label htmlFor="">First Name <span className='form-symbol'>*</span>
         </label>
@@ -55,7 +56,7 @@ export const Contact = () => (
         <label htmlFor="">Subject <span className='form-symbol'>*</span>
         </label>
         
-        <input className='input' type="text" name='text' placeholder='Subject'/>
+        <input className='input' type="text" name='subject' placeholder='Subject'/>
         
         
         <label htmlFor="">Message <span className='form-symbol'>*</span>
