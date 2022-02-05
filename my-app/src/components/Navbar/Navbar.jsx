@@ -1,15 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+import {Outlet, Link} from 'react-router-dom';
 import '../Navbar/navbar.css';
 
-
-const Layout = () => {
- 
-  return (
+export const Navbar = () => (
     <>
       <nav className='navbar active'>
         <ul>
           <li>
-            <Link className='nav' to="/"> <span className='logo'>LA</span> </Link>
+            <Link className='nav' to="/"> <span className='logo'>LA</span>
+            </Link>
           </li>
           <li>
             <Link className='nav' to="/blogs">Blog</Link>
@@ -22,9 +20,6 @@ const Layout = () => {
           </li>
         </ul>
       </nav>
-      <Outlet />
+      <Outlet/>
     </>
-  )
-};
-
-export default Layout;
+);
