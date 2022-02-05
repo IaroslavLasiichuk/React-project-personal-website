@@ -4,32 +4,56 @@ import {Footer} from '../Footer/Footer';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useSearchParams} from 'react-router-dom';
+import {breakStatement} from '@babel/types';
 
 function validateForm(e) {
   e.preventDefault();
   const inputs = document.querySelectorAll('.input');
+  let count = 0;
   inputs.forEach(element => {
     if (element.value === '') {
       element.style = 'border: 1px solid red';
-      toast(`placeholder please enter ${element.name}`);
-      return false;
+      toast.warn(`Please enter ${element.name}`, {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else if (element.type === 'email' &&
         !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(element.value)) {
-      toast(`placeholder please enter valid email address`);
-      return false;
-      
+      toast.warn(`Placeholder please enter valid email address`, {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       element.style = '';
-      document.querySelector('form').submit();
+      count++;
     }
   });
+  count === inputs.length && document.querySelector('form').submit()
 }
 
 export const Contact = () => {
   const [searchParams] = useSearchParams();
   
   if (searchParams.get('message') !== '') {
-    toast(searchParams.get('message'));
+    toast.success(searchParams.get('message'), {
+      position: 'bottom-right',
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
   return (
       
